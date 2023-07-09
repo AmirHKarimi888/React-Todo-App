@@ -67,3 +67,19 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+.addTodoPage {
+  margin-top: 60px;
+}
+
+.addTodoPage input {
+  height: 33px;
+  border-radius: 6px;
+  border: 1px solid #213547;
+}
+
+.addTodoPage input:hover {
+  border: 1px solid #646cff;
+  transition: 0.3s;
+}
