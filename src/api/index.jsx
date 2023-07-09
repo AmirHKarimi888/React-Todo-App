@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "";
+const url = "http://localhost:3000";
 
 
 
@@ -9,12 +9,16 @@ class Actions {
 
     }
 
-    async post(url) {
-        await axios.post(url)
+    async get(url, data) {
+        axios.get(url).then(data)
     }
 
-    async delete(url, id) {
-        await axios.delete(url, id)
+    async post(url, data) {
+        await axios.post(url, data)
+    }
+
+    async delete(url) {
+        await axios.delete(url)
     }
 }
 
