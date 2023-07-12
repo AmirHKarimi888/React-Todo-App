@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Action, url } from "../api";
+import { Todos } from "../components/Todos";
 
 export const AddTodoPage = () => {
     const [todo, setTodo] = useState("");
@@ -41,6 +42,8 @@ export const AddTodoPage = () => {
         <div className="addTodoPage">
             <input type="text" className="addTodoInput" onChange={ OnChange } onKeyUp={ (event) => event.code == "Enter" ? addTodo() : console.log("") } />
             <button onClick={ addTodo }>Add Todo</button>
+
+            <Todos />
         </div>
     )
 }

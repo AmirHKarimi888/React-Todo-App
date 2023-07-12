@@ -83,3 +83,23 @@ button:focus-visible {
   border: 1px solid #646cff;
   transition: 0.3s;
 }
+
+.todos ul {
+  list-style-type: none;
+  width: 72%;
+}
+
+.todos ul li {
+  width: 300px;
+  height: 75px;
+  border: 1px solid #535bf2;
+  border-radius: 9px;
+  margin-top: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.todos ul li h4 {
+  margin-left: 9px;
+}
