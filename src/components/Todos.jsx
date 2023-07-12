@@ -1,4 +1,3 @@
-import axios from "axios"
 import { url, Action } from "../api"
 import { useEffect, useState } from "react"
 
