@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { Action, url } from "../api";
-import { Todos } from "../components/Todos";
 
 export const AddTodoPage = () => {
     const [todo, setTodo] = useState("");
@@ -17,23 +16,29 @@ export const AddTodoPage = () => {
 
     useEffect(() => {
         Action.get(url + "/todos", (response) => {
-            let temp = response.data
-            temp.map((t) => {
-                todos.push(t)
-                setTodos(todos)
-            })
+            todos = response.data;
+            setTodos(todos);
         })
     }, [])
 
     const addTodo = () => {
+
         if(todo !== "") {
-            Action.post(url + "/todos", {
+            let newTodo = {
+                id: parseInt(todos.length) + 1,
                 text: todo
+            }
+
+            Action.post(url + "/todos", newTodo)
+            .then(() => {
+                todos = [...todos, newTodo];
+                setTodos(todos);
             })
             .then(() => {
                 setTodo("");
                 document.querySelector(".addTodoInput").value = "";
             })
+
         } else if (todo === "") {
             document.querySelector(".addTodoInput").style.border = "1px solid red";
         }
@@ -43,7 +48,20 @@ export const AddTodoPage = () => {
             <input type="text" className="addTodoInput" onChange={ OnChange } onKeyUp={ (event) => event.code == "Enter" ? addTodo() : console.log("") } />
             <button onClick={ addTodo }>Add Todo</button>
 
-            <Todos />
+            <div className="todos">
+            <ul>
+                {
+                    todos.map((todo, key) => {
+                        key = todo.id
+                        return (
+                            <li key={ key }>
+                                <h4>{ key } - { todo.text }</h4>
+                            </li>
+                        )
+                    })
+                }
+            </ul>
+        </div>
         </div>
     )
 }
