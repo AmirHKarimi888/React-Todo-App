@@ -84,22 +84,45 @@ button:focus-visible {
   transition: 0.3s;
 }
 
-.todos ul {
+.todos {
   list-style-type: none;
   width: 72%;
+  margin-right: 39px;
 }
 
-.todos ul li {
-  width: 300px;
+.todo {
+  width: 400px;
   height: 75px;
   border: 1px solid #535bf2;
   border-radius: 9px;
   margin-top: 9px;
   display: flex;
   align-items: center;
-  justify-content: left;
 }
 
-.todos ul li h4 {
+.todo h4 {
   margin-left: 9px;
+}
+
+.todo ul {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+.todo ul li {
+  width: 100px;
+}
+
+.todoText {
+  margin-right: 120px;
+}
+
+.todoBtns {
+  margin: 0 auto;
+  display: flex;
+}
+
+.todoBtns button {
+  margin-left: 5px;
 }

@@ -7,7 +7,7 @@ export const AddTodoPage = () => {
     const OnChange = (event) => {
         setTodo(event.target.value);
 
-        if(todo !== "") {
+        if (todo !== "") {
             document.querySelector(".addTodoInput").style.border = "1px solid #213547";
         }
     }
@@ -23,21 +23,21 @@ export const AddTodoPage = () => {
 
     const addTodo = () => {
 
-        if(todo !== "") {
+        if (todo !== "") {
             let newTodo = {
                 id: parseInt(todos.length) + 1,
                 text: todo
             }
 
             Action.post(url + "/todos", newTodo)
-            .then(() => {
-                todos = [...todos, newTodo];
-                setTodos(todos);
-            })
-            .then(() => {
-                setTodo("");
-                document.querySelector(".addTodoInput").value = "";
-            })
+                .then(() => {
+                    todos = [...todos, newTodo];
+                    setTodos(todos);
+                })
+                .then(() => {
+                    setTodo("");
+                    document.querySelector(".addTodoInput").value = "";
+                })
 
         } else if (todo === "") {
             document.querySelector(".addTodoInput").style.border = "1px solid red";
@@ -45,23 +45,29 @@ export const AddTodoPage = () => {
     }
     return (
         <div className="addTodoPage">
-            <input type="text" className="addTodoInput" onChange={ OnChange } onKeyUp={ (event) => event.code == "Enter" ? addTodo() : console.log("") } />
-            <button onClick={ addTodo }>Add Todo</button>
+            <input type="text" className="addTodoInput" onChange={OnChange} onKeyUp={(event) => event.code == "Enter" ? addTodo() : console.log("")} />
+            <button onClick={addTodo}>Add Todo</button>
 
-            <div className="todos">
-            <ul>
-                {
-                    todos.map((todo, key) => {
-                        key = todo.id
-                        return (
-                            <li key={ key }>
-                                <h4>{ key } - { todo.text }</h4>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-        </div>
+            <div>
+                <ul className="todos">
+                    {
+                        todos.map((todo, key) => {
+                            key = todo.id
+                            return (
+                                <li className="todo" key={key}>
+                                    <ul>
+                                        <li className="todoText">{key} - {todo.text}</li>
+                                        <li className="todoBtns">
+                                            <button><i className="fa fa-edit"></i></button>
+                                            <button><i className="fa fa-trash"></i></button>
+                                        </li>
+                                    </ul>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </div>
         </div>
     )
 }
