@@ -26,7 +26,8 @@ export const AddTodoPage = () => {
         if (todo !== "") {
             let newTodo = {
                 id: parseInt(todos.length) + 1,
-                text: todo
+                text: todo,
+                editStatus: false
             }
 
             Action.post(url + "/todos", newTodo)
@@ -43,6 +44,41 @@ export const AddTodoPage = () => {
             document.querySelector(".addTodoInput").style.border = "1px solid red";
         }
     }
+
+    const changeEditStatus = (id) => {
+        let td = "";
+
+        todos.filter((todo) => {
+            if(todo.id == id) {
+                td = { ...todo, editStatus: !todo.editStatus }
+            }
+        })
+
+        todos = todos.filter((todo) => {
+            if(todo.id != id) {
+                return todo
+            }
+        })
+
+        todos.push(td)
+        todos.reverse()
+
+        setTodos(todos)
+    }
+
+    const deleteTodo = (id) => {
+        Action.delete(url + `/todos/${ id }`)
+        .then(() => {
+            todos = todos.filter((todo) => {
+                if(todo.id != id) {
+                    return todo
+                }
+            })
+        })
+        .then(() => {
+            setTodos(todos);
+        })
+    }
     return (
         <div className="addTodoPage">
             <input type="text" className="addTodoInput" onChange={OnChange} onKeyUp={(event) => event.code == "Enter" ? addTodo() : console.log("")} />
@@ -56,10 +92,11 @@ export const AddTodoPage = () => {
                             return (
                                 <li className="todo" key={key}>
                                     <ul>
-                                        <li className="todoText">{key} - {todo.text}</li>
+                                        <li className="todoText">{key} - {todo.text} </li>
                                         <li className="todoBtns">
-                                            <button><i className="fa fa-edit"></i></button>
-                                            <button><i className="fa fa-trash"></i></button>
+                                            { !todo.editStatus && <button onClick={ () => changeEditStatus(key) }><i className="fa fa-edit"></i></button> }
+                                            { todo.editStatus && <button onClick={ () => changeEditStatus(key) }><i style={{ "color": "green" }} className="fa fa-edit"></i></button> }
+                                            <button onClick={ () => deleteTodo(key) }><i className="fa fa-trash"></i></button>
                                         </li>
                                     </ul>
                                 </li>

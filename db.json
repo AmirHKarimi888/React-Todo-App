@@ -1,48 +1,19 @@
 {
   "todos": [
     {
-      "text": "hi",
-      "id": 1
+      "id": 1,
+      "text": "one",
+      "editStatus": false
     },
     {
-      "text": "hello",
-      "id": 2
+      "id": 2,
+      "text": "two",
+      "editStatus": false
     },
     {
-      "text": "3",
-      "id": 3
-    },
-    {
-      "text": "a",
-      "id": 4
-    },
-    {
-      "text": "b",
-      "id": 5
-    },
-    {
-      "id": 6,
-      "text": "c"
-    },
-    {
-      "id": 7,
-      "text": "d"
-    },
-    {
-      "id": 8,
-      "text": "e"
-    },
-    {
-      "id": 9,
-      "text": "f"
-    },
-    {
-      "id": 10,
-      "text": "arigatoe"
-    },
-    {
-      "id": 11,
-      "text": "arigatoe gozay mase!"
+      "id": 3,
+      "text": "three",
+      "editStatus": false
     }
   ]
 }
