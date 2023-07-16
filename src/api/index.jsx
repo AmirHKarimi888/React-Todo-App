@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const url = "http://localhost:3000";
+const url = "https://64b3e8910efb99d8626884f1.mockapi.io/TodoApp/v1";
 
-
+//"http://localhost:3000"
+//"https://64b3e8910efb99d8626884f1.mockapi.io/TodoApp/v1/"
 
 class Actions {
     constructor() {

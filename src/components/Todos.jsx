@@ -23,7 +23,7 @@ export const Todos = () => {
                                 <li className="todo" key={key}>
                                     <ul>
                                         <li style={{ "width": "100%" }}>
-                                            <Link to={ "/todos/" + key }><h3>{key} - {todo.text} </h3></Link>
+                                            <Link to={ "/todos/" + key } style={{ "textDecoration": "none", "color": "white" }}><h3>{key} - {todo.text} </h3></Link>
                                         </li>
                                     </ul>
                                 </li>
