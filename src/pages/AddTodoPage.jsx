@@ -2,12 +2,12 @@ import { useEffect, useState } from "react"
 import { Action, url } from "../api";
 
 export const AddTodoPage = () => {
-    const [todo, setTodo] = useState("");
+    let [todoText, setTodoText] = useState("");
 
     const OnChange = (event) => {
-        setTodo(event.target.value);
+        setTodoText(event.target.value);
 
-        if (todo !== "") {
+        if (todoText !== "") {
             document.querySelector(".addTodoInput").style.border = "1px solid #213547";
         }
     }
@@ -23,10 +23,10 @@ export const AddTodoPage = () => {
 
     const addTodo = () => {
 
-        if (todo !== "") {
+        if (todoText !== "") {
             let newTodo = {
                 id: parseInt(todos.length) + 1,
-                text: todo,
+                text: todoText,
                 editStatus: false
             }
 
@@ -36,14 +36,16 @@ export const AddTodoPage = () => {
                     setTodos(todos);
                 })
                 .then(() => {
-                    setTodo("");
+                    setTodoText("");
                     document.querySelector(".addTodoInput").value = "";
                 })
 
-        } else if (todo === "") {
+        } else if (todoText === "") {
             document.querySelector(".addTodoInput").style.border = "1px solid red";
         }
     }
+
+    let [globalEditStatus, setGlobalEditStatus] = useState(false);
 
     const changeEditStatus = (id) => {
         let td = "";
@@ -51,6 +53,17 @@ export const AddTodoPage = () => {
         todos.filter((todo) => {
             if(todo.id == id) {
                 td = { ...todo, editStatus: !todo.editStatus }
+                globalEditStatus = !todo.editStatus
+                setGlobalEditStatus(globalEditStatus)
+                if(globalEditStatus === true) {
+                    todoText = todo.text
+                    setTodoText(todoText)
+                    document.querySelector(".addTodoInput").value = todoText;
+                } else {
+                    todoText = ""
+                    setTodoText(todoText)
+                    document.querySelector(".addTodoInput").value = "";
+                }
             }
         })
 
@@ -64,6 +77,10 @@ export const AddTodoPage = () => {
         todos.reverse()
 
         setTodos(todos)
+    }
+
+    const editTodo = () => {
+
     }
 
     const deleteTodo = (id) => {
@@ -82,7 +99,8 @@ export const AddTodoPage = () => {
     return (
         <div className="addTodoPage">
             <input type="text" className="addTodoInput" onChange={OnChange} onKeyUp={(event) => event.code == "Enter" ? addTodo() : console.log("")} />
-            <button onClick={addTodo}>Add Todo</button>
+            { !globalEditStatus && <button onClick={addTodo}>Add Todo</button>}
+            { globalEditStatus && <button onClick={editTodo}>Edit Todo</button> }
 
             <div>
                 <ul className="todos">
