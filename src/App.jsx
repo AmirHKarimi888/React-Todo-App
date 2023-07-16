@@ -4,8 +4,10 @@ import './App.css'
 import { Home } from './pages/Home'
 import { AddTodoPage } from './pages/AddTodoPage'
 import { NotFoundPage } from './pages/NotFoundPage'
+import { TodoPage } from './pages/TodoPage'
 
 import { Header } from './components/Header'
+
 function App() {
 
   return (
@@ -15,6 +17,7 @@ function App() {
         <Routes>
           <Route path='/' element={ <Home /> }/>
           <Route path='/add-todo' element={ <AddTodoPage /> } />
+          <Route path='/todos/:id' element={ <TodoPage /> } />
           <Route path='*' element={ <NotFoundPage /> } />
         </Routes>
       </BrowserRouter>

@@ -1,18 +1,18 @@
 {
   "todos": [
     {
-      "id": 1,
-      "text": "one",
+      "id": 3,
+      "text": "Third one (3rd)",
       "editStatus": false
     },
     {
       "id": 2,
-      "text": "two",
+      "text": "Second one (2nd)",
       "editStatus": false
     },
     {
-      "id": 3,
-      "text": "three",
+      "id": 1,
+      "text": "This is the first (1st) ",
       "editStatus": false
     }
   ]

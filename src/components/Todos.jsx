@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { url, Action } from "../api"
 import { useEffect, useState } from "react"
 
@@ -14,18 +15,22 @@ export const Todos = () => {
 
     return (
         <div className="todos">
-            <ul>
-                {
-                    todos.map((todo, key) => {
-                        key = todo.id
-                        return (
-                            <li key={ key }>
-                                <h4>{ key } - { todo.text }</h4>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
+                <ul className="todos">
+                    {
+                        todos.map((todo, key) => {
+                            key = todo.id
+                            return (
+                                <li className="todo" key={key}>
+                                    <ul>
+                                        <li style={{ "width": "100%" }}>
+                                            <Link to={ "/todos/" + key }><h3>{key} - {todo.text} </h3></Link>
+                                        </li>
+                                    </ul>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
         </div>
     )
 }
