@@ -15,7 +15,7 @@ export const TodoPage = () => {
 
     return (
         <div className="todoPage">
-            <h2>{ todo.text }</h2>
+            <h2>{ todo.title }</h2>
         </div>
     )
 }

@@ -14,23 +14,23 @@ export const Todos = () => {
     }, [])
 
     return (
-        <div className="todos">
-                <ul className="todos">
-                    {
-                        todos.map((todo, key) => {
-                            key = todo.id
-                            return (
-                                <li className="todo" key={key}>
-                                    <ul>
-                                        <li style={{ "width": "100%" }}>
-                                            <Link to={ "/todos/" + key } style={{ "textDecoration": "none", "color": "white" }}><h3>{key} - {todo.text} </h3></Link>
-                                        </li>
-                                    </ul>
-                                </li>
-                            )
-                        })
-                    }
-                </ul>
+        <div>
+            <ul className="todos">
+                {
+                    todos.map((todo, key) => {
+                        key = todo.id
+                        return (
+                            <li className="todo" key={key}>
+                                <ul>
+                                    <li style={{ "width": "100%" }}>
+                                        <Link to={"/todos/" + key} style={{ "textDecoration": "none", "color": "white" }}><h3>{todo.title} </h3></Link>
+                                    </li>
+                                </ul>
+                            </li>
+                        )
+                    })
+                }
+            </ul>
         </div>
     )
 }
